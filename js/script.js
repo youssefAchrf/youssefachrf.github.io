@@ -1,9 +1,4 @@
-/* Corrected script.js
-  All code is now properly organized to prevent execution errors.
-*/
-
-// --- INITIALIZE PARTICLE.JS BACKGROUND ---
-// This runs first to create the animated background.
+/* ---- particles.js config ---- */
 particlesJS("particles-js", {
   "particles": {
     "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -29,12 +24,10 @@ particlesJS("particles-js", {
   "retina_detect": true
 });
 
-
-// --- INITIALIZE ALL OTHER FEATURES AFTER THE PAGE IS LOADED ---
-// This wrapper prevents errors by ensuring the HTML is ready before the script runs.
+/* --- All Other Page Scripts --- */
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- FEATURE 1: SMOOTH SCROLLING ---
+    // --- SMOOTH SCROLLING ---
     const navLinks = document.querySelectorAll('header nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -49,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- FEATURE 2: ACTIVE LINK HIGHLIGHTING ---
+    // --- ACTIVE LINK HIGHLIGHTING ---
     const sections = document.querySelectorAll('section[id]');
     const headerNavLinks = document.querySelectorAll('header nav a');
     const activateLinkOnScroll = () => {
@@ -70,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', activateLinkOnScroll);
     activateLinkOnScroll();
 
-    // --- FEATURE 3: PROJECT MODAL (POPUP) ---
+    // --- PROJECT MODAL (POPUP) ---
     const openModalButtons = document.querySelectorAll('[data-modal-target]');
     const closeModalButtons = document.querySelectorAll('.close-button');
     const overlay = document.getElementById('modal-overlay');
@@ -105,6 +98,22 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal');
             closeModal(modal);
+        });
+    });
+
+    // --- HAMBURGER MENU ---
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
         });
     });
 
